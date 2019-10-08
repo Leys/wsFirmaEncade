@@ -37,8 +37,12 @@ public class clsDatos {
         this.cve = clave;
         this.usu = usuario;
         this.pas = pas;
-        this.nombre = alias;
-        this.estatus = foto;
+        this.nombre = nombre;
+        this.estatus = estatus;
+    }
+    
+    public clsDatos(){
+        
     }
     
     
