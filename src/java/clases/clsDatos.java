@@ -41,6 +41,10 @@ public class clsDatos {
         this.estatus = estatus;
         this.foto = foto;
     }
+  
+     public clsDatos() {
+        
+    }
 
     public String getUsu() {
         return usu;
@@ -89,12 +93,7 @@ public class clsDatos {
     public void setFoto(String foto) {
         this.foto = foto;
     }
-    
-    
-    public clsDatos() {
-        
-    }
-    
+       
     
     //Cadena de conexión
     Connection cnn;
