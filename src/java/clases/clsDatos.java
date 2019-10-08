@@ -26,19 +26,73 @@ public class clsDatos {
     private int cve;
     private String nombre;
     private int estatus;
-    private String fechReg;
+    private String foto;
     
     //crear el constructor de usuario
     //clic dercho-- insert code -- constructor
     
     
 
-    public clsDatos(int clave,String usuario, String pas, String nombre,int estatus) {
+    public clsDatos(int clave,String usuario, String pas, String nombre,int estatus, String foto) {
         this.cve = clave;
         this.usu = usuario;
         this.pas = pas;
-        this.nombre = alias;
-        this.estatus = foto;
+        this.nombre = nombre;
+        this.estatus = estatus;
+        this.foto = foto;
+    }
+
+    public String getUsu() {
+        return usu;
+    }
+
+    public void setUsu(String usu) {
+        this.usu = usu;
+    }
+
+    public String getPas() {
+        return pas;
+    }
+
+    public void setPas(String pas) {
+        this.pas = pas;
+    }
+
+    public int getCve() {
+        return cve;
+    }
+
+    public void setCve(int cve) {
+        this.cve = cve;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public int getEstatus() {
+        return estatus;
+    }
+
+    public void setEstatus(int estatus) {
+        this.estatus = estatus;
+    }
+
+    public String getFoto() {
+        return foto;
+    }
+
+    public void setFoto(String foto) {
+        this.foto = foto;
+    }
+    
+    
+    public clsDatos() {
+        
     }
     
     
@@ -80,5 +134,12 @@ public class clsDatos {
         return rs;
     }
     
-    
+    public ResultSet registrarUsu(String nombre, String contra ) throws SQLException {
+        consultaSql="call tspRegistrarUsuario('"+ nombre + "','"+ contra + "');";
+        //Establecer ejecución de comando
+        st= (Statement) cnn.createStatement();
+        //Ejeuta comando
+        rs= st.executeQuery(consultaSql);
+        return rs;
+    }
 }
