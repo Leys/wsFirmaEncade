@@ -141,7 +141,7 @@
                         <br>
                         &nbsp;&nbsp;
                         <div class="auto-style4"align="center">
-                            ¿No tienes cuenta? <a href="jspRegistroUsuario.jsp"> Regístrate aquí </a>
+                            ¿No tienes cuenta? <a href="?op=jspRegistroUsuario.jsp"> Regístrate aquí </a>
                             <!--document.location.href="jspRegistroUsuario.jsp";-->
                         </div>
                   </td>
