@@ -35,13 +35,14 @@
         <link rel="stylesheet" href="css/unicons.css">
         <link rel="stylesheet" href="css/owl.carousel.min.css">
         <link rel="stylesheet" href="css/owl.theme.default.min.css">
-        
+        <link rel="stylesheet" href="css/styles.css">
+        <link rel="stylesheet" href="css/bootstrap-grid.min.css">
         <!-- MAIN STYLE -->
         <link rel="stylesheet" href="css/tooplate-style.css">
         <style type="text/css">
             <%@include file="css/unicons.css"%>                    
             <%@include file="css/owl.carousel.min.css"%>                    
-            <%@include file="css/owl.theme.default.min.css"%>    
+            <%@include file="css/owl.theme.default.min.css"%>
         </style>
         <style type="text/css">
             .auto-style1 {

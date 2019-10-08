@@ -1,0 +1,48 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 8/10/2019, 10:03:37 AM
+    Author     : diego
+*/
+
+.Instrucciones{
+    float:left;
+}
+
+
+.Instrucciones li{
+    list-style: decimal;
+    float: none;
+    margin-left: 15px;
+    text-align: left;
+}
+
+.Instrucciones ol{
+    margin-left: 0px;
+    padding-left: 0px;
+}
+
+.firmar .label{
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.firmar input[type="file"]{
+    margin-top: 10px;
+}
+
+.firmar .form-control{
+    display: inline-block;
+}
+
+#details{
+    overflow: scroll;
+}
+
+#m-o-det{
+    cursor: pointer;
+    color: blue;
+}
