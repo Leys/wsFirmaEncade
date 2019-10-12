@@ -21,6 +21,7 @@
     {
         pagina=request.getParameter("op").toString();
     }
+    System.out.println(pagina);
 %>
 <!DOCTYPE html>
 <html>
@@ -103,27 +104,29 @@
            <div class="collapse navbar-collapse" id="navbarNav" >
                 <ul class="navbar-nav mx-auto">
                     <li class="nav-item"  >
-                        <a href="?op=jspUsuarios.jsp" class="nav-link"><span data-hover="Usuario">Usuario</span></a>
-                        <ul>
-                          <li><a href="?op=jspUsuarios.jsp">Contactos</a></li>
-                          <li><a href="?op=jspVerificarC.jsp">Verificación</a></li>
-                          <li><a href="?op=jspHistorial.jsp">Historial</a></li>
-                        </ul>
+                        <a href="?op=jspPrincipal.jsp" class="nav-link"><span data-hover="Home">Home</span></a>
+                        
                     </li>
 
 
                     <li class="nav-item">
-                        <a href="#project" class="nav-link"><span data-hover="Mensaje">Mensaje</span></a>
+                        <a href="?op=jspVerificarC.jsp" class="nav-link"><span data-hover="Verificar">Verificar</span></a>
                         <ul>
                           <li><a href="#">Envío</a></li>
-                          <li><a href="?op=jspFirmaMen.jsp">Firma</a></li>
                         </ul>
                     </li>
                     <li class="nav-item">
                         <a href="?op=jspHistorial.jsp" class="nav-link"><span data-hover="Historial">Historial</span></a>
                     </li>
                     <li class="nav-item">
-                        <a href="?op=jspCerrarSes.jsp" class="nav-link"><span data-hover="CerrarSesion">Cerrar Sesión</span></a>
+                        <a href="#" class="nav-link"><span data-hover="CerrarSesion">Mi cuenta</span></a>
+                        <ul>
+                            <li><a href="?op=jspFirmaMen.jsp">Firmar</a></li>
+                            <li><a href="?op=jspHistorial.jsp">Mi historial</a></li>
+                            <li><a href="?op=jspUsuarios.jsp">Mi cuenta</a></li>
+                            <li><a href="?op=jspCerrarSes.jsp">Cerrar sesión</a></li>
+                            
+                        </ul>
                     </li>
                 </ul>
             </div>
