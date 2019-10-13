@@ -9,7 +9,7 @@
 
 
 <%
-    //Cambiar la referencia de las páginas a : document.location.href='?op=jspPrincipal.jsp';
+    
     
     //este código permitirá que se obtenga el nombre de 
     //la página a mostrar 

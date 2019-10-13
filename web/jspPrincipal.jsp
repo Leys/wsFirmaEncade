@@ -4,7 +4,11 @@
     Author     : Adaleysi
 --%>
 
+<%@page import="clases.clsDatos"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%
+    clsDatos usu=(clsDatos)request.getSession().getAttribute("usuario1");
+%>
 
         
         <!-- ABOUT -->
@@ -30,7 +34,13 @@
         <section>
             <center>
                 <table >
-                    En este sitio podrás ...
+                    <p> <%= usu.getNombre()%></p>
+                    <p> <%= usu.getUsu()%> </p>
+                    
+                    Tenemos que aprender a soltar
+                  
+                    pero vergazos, para que sepan
+                    que uno no es pendejp de nadie
                     
                 </table>
             </center>

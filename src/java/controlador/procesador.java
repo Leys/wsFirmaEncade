@@ -17,6 +17,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -66,19 +67,19 @@ public class procesador extends HttpServlet {
                     {
                        //se genera una sesion con los datos del modelo
                         request.getSession().setAttribute("usuario1", usu);
-                        request.getRequestDispatcher("?op=jspVistaDatosCor.jsp").forward(request, response); 
+                        request.getRequestDispatcher("jspVistaDatosCor.jsp").forward(request, response); 
                     }
                     else{
-                        //FALTA CREAR VISTA PARA DATOS INCORRECTOS Y CAMPOS VACÍOS
-                        //request.getRequestDispatcher("jspErrorAcceso.jsp").forward(request, response); 
+                        //FALTA CREAR VISTA PARA CAMPOS VACÍOS
+                        request.getRequestDispatcher("jspDatosError.jsp").forward(request, response); 
                     }
 
-                    }
-                else
-                {
-                    System.out.println("Error");
+            }
+            else
+            {
+                System.out.println("Error");
                     //request.getRequestDispatcher("jspErrorCampos.jsp").forward(request, response);
-                }
+            }
         
         
     }

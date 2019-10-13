@@ -104,7 +104,7 @@ public class clsDatos {
     //Equivalente al command
     Statement st;
     
-    //Se crea la conexión a ka case de datos
+    
     public Connection conexion() throws SQLException{
         try{
             //Se agrega el driver de conexión
