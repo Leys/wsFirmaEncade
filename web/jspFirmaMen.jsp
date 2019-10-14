@@ -45,28 +45,33 @@
     
     <div class="row">
         <div class="col-12">
-            <form action="" align="center" class="firmar form-inline">
-                <div class="col-6 form-control" align="center">
+            <form action="multipartProcessor" align="center" class="firmar form-inline" enctype="multipart/form-data" method="post">
+            <div class="col-12 form-control" align="center" id="sem">
                     <div class="label">Selecciona la semilla</div>
-                    
                     <input type="file" name="seed" id="seed" class="form-control">
+                    <input type="submit" name="btnSemilla" id="btnSemilla" class="form-control" value="Aceptar">
                 </div>
-                <div class="col-5 form-control " align="center">
+            </form>
+            <form action="multipartProcessor" align="center" class="firmar form-inline" enctype="multipart/form-data" method="post">
+            
+                <div class="col-12 form-control " align="center" id="archivo" style="display: none;">
                     <div class="label">Selecciona el archivo</div>
                     
-                    <input type="file" name="seed" id="seed" class="form-control">
+                    <input type="file" name="seed" id="seed" class="form-control" value="Aceptar">
                 </div>
-                
+                </form>
                 <div class="custom-btn-group mt-4" align="center">
                     <input  type="button" href="" class="btn custom-btn custom-btn-bg custom-btn-link"name="btn_Descargar"value="Descargar Firma"id="btn_Descargar" style="width: 172px; display: inline-block;" >
                     <input  type="submit" href="" class="btn custom-btn custom-btn-bg custom-btn-link"name="btn_Firmar"value="Firmar"id="btn_Firmar" style="width: 172px" >
-                </div>                 
-            </form>
+                </div>
+                <input type="hidden" value="jspFirmaMen.jsp" name="pag" id="pag">                
+                
             
             <div align="center">
                 <div class="col-8 center-block mt-4" align="center">
                     <div id="details" style="display: none;">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
+                        <textarea id="det" name="det" style="width: 100%; height: 150px; resize: vertical;" disabled="disabled">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
+                        </textarea>
                     </div>
                     <div>
                         <a id="m-o-det" onclick="details()">Ver detalles</a>

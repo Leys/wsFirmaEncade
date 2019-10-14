@@ -72,90 +72,84 @@
 
 
    
-       
-        
-        <!-- ABOUT -->
 
-        <div class="container">
-
-            <div class="about-text align-items-center">
-                <center>
+<section>
+    <!-- ABOUT -->
+    <div class="container">
+        <div class="about-text align-items-center">
+            <center>
                 <br><br>
-                    <h3>
-                        <span class="mr-2" > Acceso al sistema</span>
-                    </h3>
+                <h3>
+                    <span class="mr-2" > Acceso al sistema</span>
+                </h3>
                 <br>
-                </center>
-
-            </div>
+            </center>
         </div>
-        
-        </section>
-        
-        
-        <!-- CONTENIDO -->
-        <section>
-        <center>
-            <table >
-                <tr>
-                  <td>
+    </div>
+</section>
+
+
+<!-- CONTENIDO -->
+<section>
+    <center>
+        <table >
+            <tr>
+                <td>
                     <div class="small" align="right">
                         <h4>&nbsp;&nbsp; Usuario</h4>
-                  </td>
-                  <td>
-                    <form action="" method="get" align="right">
-                        <div class="auto-style4" align="center">
-                          <input type="text" class="auto-style1" name="txtUsuario" id="miid" placeholder="Nombre Usuario" id="txtUsuario" value="<%=usuario%>" width="20"size="40">
-                  </td>
-                </tr>
+                </td>
+                <td>
+                    <div class="auto-style4" align="center">
+                        <input type="text" class="auto-style1" name="txtUsuario" id="miid" placeholder="Nombre Usuario" id="txtUsuario" value="<%=usuario%>" width="20"size="40">
+                    </div>
+                </td>
+            </tr>
 
-                <tr>
-                  <td>
-                      <br>
+            <tr>
+                <td>
+                    <br>
                     &nbsp;&nbsp;
                     <div class="small" align="right">
                         <h4 >&nbsp;&nbsp;Contraseña</h4>
+                    </div>
 
-                  </td>
-                  <td>
-                      <br>
-                    <form action="" method="get">
-                        <div class="auto-style4"align="center">
-                          <input type="password" class="auto-style2" name="txtContra" id="miid" placeholder="Contraseña" id="txtContra" value="<%=contra%>" width="20"size="40">
-                  </td>
-                </tr>
-                <br>
-                <tr>
-                  <td>
-                  </td>
-                  <td >
-                    <form action=""align="center">
-                      <div class="custom-btn-group mt-4" align="center">
+                </td>
+                <td>
+                    <br>
+                    <div class="auto-style4"align="center">
+                        <input type="password" class="auto-style2" name="txtContra" id="miid" placeholder="Contraseña" id="txtContra" value="<%=contra%>" width="20"size="40">
+                    </div>
+                </td>
+            </tr>
+            <br>
+            <tr>
+                <td>
+                </td>
+                <td >
+                    <div class="custom-btn-group mt-4" align="center">
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <input  type="submit" href="#contact" class="btn custom-btn custom-btn-bg custom-btn-link"name="btnEntrar"value="Acceder"id="btnEntrar" style="width: 172px"onclick="acceso();" >
-                      </div>
-                        <div>
-                            <br>
-                        &nbsp;&nbsp;
-                        </div>
+                    </div>
+                    <div>
                         <br>
                         &nbsp;&nbsp;
-                        <div class="auto-style4"align="center">
-                            ¿No tienes cuenta? <a href="?op=jspRegistroUsuario.jsp"> Regístrate aquí </a>
-                            <!--document.location.href="jspRegistroUsuario.jsp";-->
-                        </div>
-                  </td>
-                  <td>
-                  </td>
-                </tr>
-            </table>
-        </center>
-        <br>
-        </div>
-        </section>
-        
-       
-   
+                    </div>
+                    <br>
+                    &nbsp;&nbsp;
+                    <div class="auto-style4"align="center">
+                        ¿No tienes cuenta? <a href="?op=jspRegistroUsuario.jsp"> Regístrate aquí </a>
+                        <!--document.location.href="jspRegistroUsuario.jsp";-->
+                    </div>
+                </td>
+                <td>
+                </td>
+            </tr>
+        </table>
+    </center>
+</section>
+
+
+
     
     
 

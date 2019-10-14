@@ -17,10 +17,17 @@
     String pagina="jspAcceso.jsp";
     //request.getParamer --> obtiene el valor enviado de 
     //alguna página
-    if(request.getParameter("op")!=null)
-    {
-        pagina=request.getParameter("op").toString();
-    }
+    
+        if(request.getParameter("op")!=null)
+        {
+            pagina=request.getParameter("op").toString();
+        }
+        else if(request.getAttribute("op")!=null)
+        {
+            pagina=request.getParameter("op").toString();
+        }
+        System.out.println("Pagina: "+pagina);
+        
 %>
 <!DOCTYPE html>
 <html>

@@ -4,9 +4,17 @@
         <servlet-name>procesador</servlet-name>
         <servlet-class>controlador.procesador</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>multipartProcessor</servlet-name>
+        <servlet-class>controlador.multipartProcessor</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>procesador</servlet-name>
         <url-pattern>/procesador</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>multipartProcessor</servlet-name>
+        <url-pattern>/multipartProcessor</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
