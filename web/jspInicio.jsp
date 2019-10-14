@@ -4,13 +4,13 @@
     Author     : Adaleysi
 --%>
 
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 
 <%
     //Cambiar la referencia de las páginas a : document.location.href='?op=jspPrincipal.jsp';
-    
+  //hola
+  
     //este código permitirá que se obtenga el nombre de 
     //la página a mostrar 
     //en el cuerpo de esta página
