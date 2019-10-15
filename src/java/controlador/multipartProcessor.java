@@ -60,12 +60,24 @@ public class multipartProcessor extends HttpServlet {
              
     }
     
+//    try {
+//            FileItemFactory factory = new DiskFileItemFactory();
+//            ServletFileUpload upload = new ServletFileUpload(factory);
+//            List items = upload.parseRequest(request);
+//            
+//            
+//            
+//            
+//        } catch (FileUploadException ex) {
+//            Logger.getLogger(multipartProcessor.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+    //http://chuwiki.chuidiang.org/index.php?title=File_upload_con_JSP
+    
 
     
     
     private void firmar(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
         
         //request.getPart("flu");
         System.out.println("Firmar");
