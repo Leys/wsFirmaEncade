@@ -49,6 +49,7 @@
             <div class="col-12 form-control" align="center" id="sem">
                     <div class="label">Selecciona la semilla</div>
                     <input type="file" name="seed" id="seed" class="form-control">
+                    <input type="hidden" name="op" id="op" value="seed" class="form-control">
                     <input type="submit" name="btnSemilla" id="btnSemilla" class="form-control" value="Aceptar">
                 </div>
             </form>
