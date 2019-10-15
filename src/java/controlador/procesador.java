@@ -67,11 +67,13 @@ public class procesador extends HttpServlet {
                     {
                        //se genera una sesion con los datos del modelo
                         request.getSession().setAttribute("usuario1", usu);
-                        request.getRequestDispatcher("jspVistaDatosCor.jsp").forward(request, response); 
+                        
+                        request.setAttribute("op", "jspPrincipal.jsp");
+                        request.getRequestDispatcher("index.jsp").forward(request, response); 
                     }
                     else{
                         //FALTA CREAR VISTA PARA CAMPOS VACÍOS
-                        request.getRequestDispatcher("jspDatosError.jsp").forward(request, response); 
+                        request.getRequestDispatcher("jspAcceso.jsp").forward(request, response); 
                     }
 
             }

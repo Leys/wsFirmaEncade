@@ -11,24 +11,7 @@
     clsDatos usu=(clsDatos)request.getSession().getAttribute("usuario1");
 %>
  <!-- ABOUT -->
-
-        <div class="container">
-
-            <div class="about-text align-items-center">
-                <center>
-                <br><br>
-                    <h3>
-                        <span class="mr-2" >  °°°  </span>
-                    </h3>
-                <br>
-                </center>
-
-            </div>
-        </div>
-        
-        </section>
-        
-        <!-- CONTENIDO -->
+ <!-- CONTENIDO -->
         <section>
             <center>
                 <table >

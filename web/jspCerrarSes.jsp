@@ -8,28 +8,18 @@
 
 
 
+<%
 
-        
-        
-        <!-- ABOUT -->
+request.getSession().setAttribute("usuario1",null);
 
-        <div class="container">
+%>
 
-            <div class="about-text align-items-center">
-                <center>
-                <br><br>
-                    <h3>
-                        <span class="mobile-mt-2" > Se ha cerrado la sesión correctamente</span>
-                        <br>
-                        &nbsp;&nbsp;
-                        <br>
-                        &nbsp;&nbsp;
-                        <a href="jspAcceso.jsp"> Iniciar Sesión </a>
-                    </h3>
-                <br>
-                </center>
 
-            </div>
-        </div>
-        
+<!-- ABOUT -->
+
+<script>
+    document.location.href="index.jsp";
     
+</script>
+
+
