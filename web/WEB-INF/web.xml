@@ -8,6 +8,10 @@
         <servlet-name>procesador1</servlet-name>
         <servlet-class>controlador.procesador1</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>multipart</servlet-name>
+        <servlet-class>controlador.multipart</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>procesador</servlet-name>
         <url-pattern>/procesador</url-pattern>
@@ -15,6 +19,10 @@
     <servlet-mapping>
         <servlet-name>procesador1</servlet-name>
         <url-pattern>/procesador1.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>multipart</servlet-name>
+        <url-pattern>/multipart.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

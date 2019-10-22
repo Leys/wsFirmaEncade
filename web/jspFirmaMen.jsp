@@ -15,9 +15,11 @@
         <div align="center">
             <h2>
                 Firma del mensaje
-            </h2>    
+            </h2>
+        <div id="error">
+            
         </div>
-        
+        </div>
     </div>
     <div class="Instrucciones col-3">
         <ul>
@@ -45,21 +47,25 @@
     
     <div class="row">
         <div class="col-12">
-            <form action="" align="center" class="firmar form-inline">
-                <div class="col-6 form-control" align="center">
+            <form action="multipart.do" align="center" class="firmar form-inline" enctype="multipart/form-data" method="post">
+                <div class="col-12 form-control" align="center" id="Token">
                     <div class="label">Selecciona la semilla</div>
-                    
-                    <input type="file" name="seed" id="seed" class="form-control">
+                    <input type="file" name="fluToken" id="fluToken" class="form-control">
+                    <br>
+                    <input type="button" name="btnToken" id="btnToken" value="Aceptar" class="btn custom-btn custom-btn-bg custom-btn-link">
                 </div>
-                <div class="col-5 form-control " align="center">
+                
+                
+                <div class="col-12 form-control " align="center" id="Archivo">
                     <div class="label">Selecciona el archivo</div>
-                    
-                    <input type="file" name="seed" id="seed" class="form-control">
+                    <input type="file" name="fluArchivo" id="fluArchivo" class="form-control">
+                    <br>
+                    <input type="button" name="btnArchivo" id="btnArchivo" value="Regresar" class="btn custom-btn custom-btn-bg custom-btn-link">
                 </div>
                 
                 <div class="custom-btn-group mt-4" align="center">
-                    <input  type="button" href="" class="btn custom-btn custom-btn-bg custom-btn-link"name="btn_Descargar"value="Descargar Firma"id="btn_Descargar" style="width: 172px; display: inline-block;" >
-                    <input  type="submit" href="" class="btn custom-btn custom-btn-bg custom-btn-link"name="btn_Firmar"value="Firmar"id="btn_Firmar" style="width: 172px" >
+                    <input  type="button" href="" class="btn custom-btn custom-btn-bg custom-btn-link" name="btn_Descargar"value="Descargar Firma"id="btn_Descargar" style="width: 172px; display: inline-block;" >
+                    <input  type="submit" href="" class="btn custom-btn custom-btn-bg custom-btn-link" name="btn_Firmar"value="Firmar"id="btn_Firmar" style="width: 172px" >
                 </div>                 
             </form>
             
@@ -90,4 +96,25 @@
         }
     }
     
+    document.getElementById("btnToken").addEventListener("click", function(){
+        if(document.getElementById("fluToken").value.length===0){
+            
+             document.getElementById("error").innerHTML="Introducir un archivo";
+        }
+        else{
+            document.getElementById("error").innerHTML="";
+            document.getElementById("Token").style.display="none";
+            document.getElementById("Archivo").style.display="block";
+        }
+    });
+    
+    document.getElementById("btnArchivo").addEventListener("click", function(){
+        document.getElementById("Token").style.display="block";
+        document.getElementById("Archivo").style.display="none";
+    });
+    
+     document.getElementById("fluArchivo").addEventListener("onchange", function(){
+        alert("bien");
+    });
+
 </script>
