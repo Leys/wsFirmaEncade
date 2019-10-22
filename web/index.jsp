@@ -25,7 +25,6 @@
     {
         pagina=request.getParameter("op").toString();
     }
-    System.out.println(pagina);
 %>
 
 <!DOCTYPE html>

@@ -5,8 +5,14 @@
  */
 package controlador;
 
+import clases.clsFirma;
+import clases.clsUsuario;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.math.BigInteger;
+import java.nio.ByteBuffer;
 import java.sql.SQLException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -14,6 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.ServletOutputStream;
 
 /**
  *
@@ -32,24 +39,69 @@ public class procesador1 extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       
-            String usuario=request.getParameter("txtUsuario");
-            String nombre=request.getParameter("txtNombre");
-            String app=request.getParameter("txtApp");
-            String apm=request.getParameter("txtApm");
-            String pwd=request.getParameter("txtContra");
-            String confpwd=request.getParameter("txtCContra");
-            String foto = request.getParameter("image");
-            
-            
-            if(!usuario.equals("")&& !pwd.equals("")&& !nombre.equals("") && !app.equals("")&& !apm.equals("")&& !confpwd.equals("")){
-                
+
+        try {
+            String org = request.getParameter("org");
+            switch (org) {
+                case "regUsu":
+                    registrarUsuario(request, response);
+                    break;
+                    
+                default:
+                    break;
             }
-            else{
-                    request.getRequestDispatcher("jspDatosError.jsp").forward(request, response);
-                }
+        } catch (SQLException ex) {
+            Logger.getLogger(procesador1.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+    }
+
+    private void registrarUsuario(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException, SQLException {
+
+        clsFirma obj = new clsFirma();
+        obj.iniciarNuevo();
+
+        String usuario = request.getParameter("txtUsuario");
+        String nombre = request.getParameter("txtNombre");
+        String ap = request.getParameter("txtAp");
+        String pwd = request.getParameter("txtContra");
+        String confpwd = request.getParameter("txtCContra");
+        String foto = "";
+        String firma = "";
+        String h = "";
+        //decargar semillas, guardar llave publica y h
+        for (byte[] f : obj.getUltFirma()) {
+            firma += (new BigInteger(f)).toString(16) + ",";
+        }
+        
+        firma=firma.substring(0, firma.length()-1);
+        for (int uh : obj.getUltH()){
+            h += String.valueOf(uh) + ",";
+        }
+        h=h.substring(0, h.length()-1);
+        
+        clsUsuario us = new clsUsuario();
+        us.conexion();
+        String res = us.registrarUsuI(nombre, confpwd, usuario, foto, h, firma);
+        
+        if(res.equals("0")){
+            request.setAttribute("edo", "El usuario ya existe");
+        }
+        else{
+            request.setAttribute("edo", "Exito, por favor almacene su token en un lugar seguro");
+            BigInteger s0 = new BigInteger(obj.getUltSeed()[0]);
+            BigInteger s1 = new BigInteger(obj.getUltSeed()[1]);
+            String semilla = s0.toString(16) + "\n" + s1.toString(16);
+            request.getSession().setAttribute("semilla", semilla);
+            request.setAttribute("ban", "1");
+        }
+        
+        
+        request.setAttribute("op", "jspRegistroUsuario.jsp");
+        request.getRequestDispatcher("index.jsp").forward(request, response);
+
+    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

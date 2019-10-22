@@ -46,3 +46,11 @@ and open the template in the editor.
     cursor: pointer;
     color: blue;
 }
+
+#error{
+    color: red;
+}
+
+#Archivo{
+    display: none;
+}
