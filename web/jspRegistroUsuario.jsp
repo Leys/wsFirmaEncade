@@ -35,16 +35,28 @@
         <!-- CONTENIDO -->
         <section>
         <center>
+            <form action="procesador1.do" method="post" id="frmDatosU" name="frmDatosU"> 
             <table >
+                
+                <!-- agregar foto PENDIENTE  -->
+                <tr>
+                    <td>
+                        <div class="auto-style4" align="center">
+                            <img src="images/iconuser.jpg" class="small" width="200px" height="185px"   id="image" alt="image">
+                            <!--<input type="image" class="auto-style2" name="image" id="image" width="40" size="40">-->
+                        </div>
+                    </td>
+                    
+                </tr>
+                
                 <tr>
                   <td>
                     <div class="small" align="right">
                         <h4>&nbsp;&nbsp; Usuario</h4>
                   </td>
                   <td>
-                    <form action="" method="get" align="right">
                         <div class="auto-style4" align="center">
-                          <input type="text" class="auto-style1" name="txt_Usuario" id="miid" placeholder="Usuario" id="txt_Usuario" width="20"size="40">
+                          <input type="text" class="auto-style1" name="txtUsuario" id="miid" placeholder="Usuario" id="txtUsuario" width="20"size="40">
                   </td>
                 </tr>
                 
@@ -56,9 +68,8 @@
                         <h4>&nbsp;&nbsp; Nombre</h4>
                   </td>
                   <td>
-                    <form action="" method="get" align="right">
                         <div class="auto-style4" align="center">
-                          <input type="text" class="auto-style1" name="txt_Nombre" id="miid" placeholder="Nombre" id="txt_Nombre" width="20"size="40">
+                          <input type="text" class="auto-style1" name="txtNombre" id="miid" placeholder="Nombre" id="txtNombre" width="20"size="40">
                   </td>
                 </tr>
                 
@@ -70,9 +81,8 @@
                         <h4>&nbsp;&nbsp; Apellido Paterno</h4>
                   </td>
                   <td>
-                    <form action="" method="get" align="right">
                         <div class="auto-style4" align="center">
-                          <input type="text" class="auto-style1" name="txt_ApPat" id="miid" placeholder="Apellido" id="txt_ApPat" width="20"size="40">
+                          <input type="text" class="auto-style1" name="txtApp" id="miid" placeholder="Apellido" id="txtApp" width="20"size="40">
                   </td>
                 </tr>
                 
@@ -84,9 +94,8 @@
                         <h4>&nbsp;&nbsp; Apellido Materno</h4>
                   </td>
                   <td>
-                    <form action="" method="get" align="right">
                         <div class="auto-style4" align="center">
-                          <input type="text" class="auto-style1" name="txt_ApMat" id="miid" placeholder="Apellido" id="txt_ApMat" width="20"size="40">
+                          <input type="text" class="auto-style1" name="txtApm" id="miid" placeholder="Apellido" id="txtApm" width="20"size="40">
                   </td>
                 </tr>
                 
@@ -99,9 +108,8 @@
                   </td>
                   <td>
                       <br>
-                      <form action="" method="get">
                         <div class="auto-style4"align="center">
-                          <input type="password" class="auto-style2" name="txt_Contra" id="miid" placeholder="Contraseña" id="txt_Contra" width="20"size="40">
+                          <input type="password" class="auto-style2" name="txtContra" id="miid" placeholder="Contraseña" id="txtContra" width="20"size="40">
                   </td>
                 </tr>
                 
@@ -114,9 +122,8 @@
                   </td>
                   <td>
                       <br>
-                      <form action="" method="get">
                         <div class="auto-style4"align="center">
-                          <input type="password" class="auto-style2" name="txt_CContra" id="miid" placeholder="Contraseña" id="txt_CContra" width="20"size="40">
+                          <input type="password" class="auto-style2" name="txtCContra" id="miid" placeholder="Contraseña" id="txtCContra" width="20"size="40">
                   </td>
                 </tr>
                 
@@ -129,10 +136,9 @@
                   <td>
                   </td>
                   <td >
-                    <form action=""align="center">
                       <div class="custom-btn-group mt-4" align="center">
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <input  type="submit" href="#contact" class="btn custom-btn custom-btn-bg custom-btn-link"name="btn_Registrar"value="Registrar"id="btn_Registrar" style="width: 172px" >
+                        <input  type="submit" href="#contact" class="btn custom-btn custom-btn-bg custom-btn-link"name="btnRegistrar"value="Registrar"id="btnRegistrar" style="width: 172px" >
                       </div>
                         
                         <div>
@@ -140,7 +146,7 @@
                         &nbsp;&nbsp;
                         </div> 
                         <div>
-                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="jspAcceso.jsp"> Iniciar Sesión </a>
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="?op=jspAcceso.jsp"> Iniciar Sesión </a>
                         </div>   
                         
                       
@@ -150,6 +156,7 @@
                 </tr>
                 
                 </table>
+            </form>
         </center>
         <br>
         </div>

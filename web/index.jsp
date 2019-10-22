@@ -9,19 +9,25 @@
 
 
 <%
-    //Cambiar la referencia de las páginas a : document.location.href='?op=jspPrincipal.jsp';
+    
     
     //este código permitirá que se obtenga el nombre de 
     //la página a mostrar 
     //en el cuerpo de esta página
-    String pagina="jspAcceso.jsp";
+    String pagina="jspPrincipal.jsp";
     //request.getParamer --> obtiene el valor enviado de 
     //alguna página
-    if(request.getParameter("op")!=null)
+    if(request.getAttribute("op")!=null)
+    {
+        pagina=request.getAttribute("op").toString();
+    }
+    else if(request.getParameter("op")!=null)
     {
         pagina=request.getParameter("op").toString();
     }
+    System.out.println(pagina);
 %>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -103,28 +109,45 @@
            <div class="collapse navbar-collapse" id="navbarNav" >
                 <ul class="navbar-nav mx-auto">
                     <li class="nav-item"  >
-                        <a href="?op=jspUsuarios.jsp" class="nav-link"><span data-hover="Usuario">Usuario</span></a>
-                        <ul>
-                          <li><a href="?op=jspUsuarios.jsp">Contactos</a></li>
-                          <li><a href="?op=jspVerificarC.jsp">Verificación</a></li>
-                          <li><a href="?op=jspHistorial.jsp">Historial</a></li>
-                        </ul>
+                        <a href="index.jsp?op=jspPrincipal.jsp" class="nav-link"><span data-hover="Home">Home</span></a>
+                        
                     </li>
 
 
                     <li class="nav-item">
-                        <a href="#project" class="nav-link"><span data-hover="Mensaje">Mensaje</span></a>
+                        <a href="index.jsp?op=jspVerificarC.jsp" class="nav-link"><span data-hover="Verificar">Verificar</span></a>
+                        
+                    </li>
+                    <li class="nav-item">
+                        <a href="index.jsp?op=jspHistorial.jsp" class="nav-link"><span data-hover="Historial">Historial</span></a>
+                    </li>
+                    <% if(request.getSession().getAttribute("usuario1")!=null){
+                        %>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link"><span data-hover="CerrarSesion">Mi cuenta</span></a>
                         <ul>
-                          <li><a href="#">Envío</a></li>
-                          <li><a href="?op=jspFirmaMen.jsp">Firma</a></li>
+                            <li><a href="index.jsp?op=jspFirmaMen.jsp">Firmar</a></li>
+                            <li><a href="index.jsp?op=jspHistorial.jsp">Mi historial</a></li>
+                            <li><a href="index.jsp?op=jspUsuarios.jsp">Mi cuenta</a></li>
+                            <li><a href="index.jsp?op=jspCerrarSes.jsp">Cerrar sesión</a></li>
+                            
                         </ul>
                     </li>
+                    
+                    <%
+                    }
+                    else{
+                    %>
+                    
                     <li class="nav-item">
-                        <a href="?op=jspHistorial.jsp" class="nav-link"><span data-hover="Historial">Historial</span></a>
+                        <a href="?op=jspAcceso.jsp" class="nav-link"><span data-hover="Iniciar Sesion">Iniciar sesion</span></a>
+                        
                     </li>
-                    <li class="nav-item">
-                        <a href="?op=jspCerrarSes.jsp" class="nav-link"><span data-hover="CerrarSesion">Cerrar Sesión</span></a>
-                    </li>
+                    
+                    <%}
+                    %>
+                    
+                    
                 </ul>
             </div>
         </div>
@@ -146,6 +169,8 @@
             </div>
         </footer>
    
+        
+        
         <script src="js/jquery-3.3.1.min.js"></script>
         <script src="js/popper.min.js"></script>
         <script src="js/bootstrap.min.js"></script>

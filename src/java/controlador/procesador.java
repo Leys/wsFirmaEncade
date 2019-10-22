@@ -5,6 +5,7 @@
  */
 package controlador;
 
+import clases.clsDatos;
 import com.mysql.jdbc.Connection;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -16,6 +17,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -33,7 +35,54 @@ public class procesador extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, SQLException {
+        
+        String usuario=request.getParameter("txtUsuario");
+        String pwd=request.getParameter("txtContra");
+        
+        if(!usuario.equals("")&& !pwd.equals("")) {
+                
+                //int clave,String usuario, String pas, String nombre,int estatus, String foto
+                    clsDatos usu = new clsDatos(0,usuario, pwd,"",0,"");
+
+                    Connection cnn=usu.conexion();
+
+                    ResultSet rsFrm;
+                    rsFrm =usu.validarAcceso();
+                    while(rsFrm.next())
+                    {
+                        usu.setCve(Integer.parseInt(rsFrm.getString(1)));
+                        if(usu.getCve()!=0)
+                        {
+                            usu.setNombre(rsFrm.getString(2));
+
+                            usu.setEstatus(Integer.parseInt(rsFrm.getString(3)));
+                        }
+                    }
+
+                    //se cierra la conexin
+                    rsFrm.close();
+
+                    if(usu.getCve()!=0)
+                    {
+                       //se genera una sesion con los datos del modelo
+                        request.getSession().setAttribute("usuario1", usu);
+                        
+                        request.setAttribute("op", "jspPrincipal.jsp");
+                        request.getRequestDispatcher("index.jsp").forward(request, response); 
+                    }
+                    else{
+                        //FALTA CREAR VISTA PARA CAMPOS VACÍOS
+                        request.getRequestDispatcher("jspAcceso.jsp").forward(request, response); 
+                    }
+
+            }
+            else
+            {
+                System.out.println("Error");
+                    //request.getRequestDispatcher("jspErrorCampos.jsp").forward(request, response);
+            }
+        
         
     }
 
@@ -49,7 +98,11 @@ public class procesador extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(procesador.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -63,7 +116,11 @@ public class procesador extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(procesador.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

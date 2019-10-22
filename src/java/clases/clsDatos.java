@@ -104,7 +104,7 @@ public class clsDatos {
     //Equivalente al command
     Statement st;
     
-    //Se crea la conexión a ka case de datos
+    
     public Connection conexion() throws SQLException{
         try{
             //Se agrega el driver de conexión
@@ -124,8 +124,8 @@ public class clsDatos {
         throw new UnsupportedOperationException("No soporta la conexión a la base de datos");
     }
     
-    public ResultSet validarAcceso(String usuario, String contra ) throws SQLException {
-        consultaSql="call tspValidarAcceso('"+ usuario + "','"+ contra + "');";
+    public ResultSet validarAcceso() throws SQLException {
+        consultaSql="call tspValidarAcceso('"+ usu + "','"+ pas + "');";
         //Establecer ejecución de comando
         st= (Statement) cnn.createStatement();
         //Ejeuta comando
