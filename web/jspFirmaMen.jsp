@@ -16,9 +16,9 @@
             <h2>
                 Firma del mensaje
             </h2>
-        <div id="error">
-            
-        </div>
+            <div id="error">
+
+            </div>
         </div>
     </div>
     <div class="Instrucciones col-3">
@@ -41,80 +41,66 @@
                 Comparta la firma junto su archivo
             </li>
         </ul>
-        
+
     </div>
-    
-    
+
+
     <div class="row">
         <div class="col-12">
             <form action="multipart.do" align="center" class="firmar form-inline" enctype="multipart/form-data" method="post">
+                <input  type="hidden" href="" class="btn custom-btn custom-btn-bg custom-btn-link" name="org" value="firmar" id="org">
+
                 <div class="col-12 form-control" align="center" id="Token">
                     <div class="label">Selecciona la semilla</div>
-                    <input type="file" name="fluToken" id="fluToken" class="form-control">
+                    <input type="file" name="fluToken" id="fluToken" class="form-control" accept=".key" onchange="tokenSelected();">
                     <br>
-                    <input type="button" name="btnToken" id="btnToken" value="Aceptar" class="btn custom-btn custom-btn-bg custom-btn-link">
+                    <input type="button" name="btnToken" id="btnToken" value="Continuar" class="btn custom-btn custom-btn-bg custom-btn-link">
                 </div>
-                
-                
-                <div class="col-12 form-control " align="center" id="Archivo">
-                    <div class="label">Selecciona el archivo</div>
-                    <input type="file" name="fluArchivo" id="fluArchivo" class="form-control">
-                    <br>
-                    <input type="button" name="btnArchivo" id="btnArchivo" value="Regresar" class="btn custom-btn custom-btn-bg custom-btn-link">
-                </div>
-                
-                <div class="custom-btn-group mt-4" align="center">
-                    <input  type="button" href="" class="btn custom-btn custom-btn-bg custom-btn-link" name="btn_Descargar"value="Descargar Firma"id="btn_Descargar" style="width: 172px; display: inline-block;" >
-                    <input  type="submit" href="" class="btn custom-btn custom-btn-bg custom-btn-link" name="btn_Firmar"value="Firmar"id="btn_Firmar" style="width: 172px" >
+
+
+                <div id="Archivo">
+                    <div class="col-12 form-control " align="center" >
+                        <div class="label">Selecciona el archivo</div>
+                        <input type="file" name="fluArchivo" id="fluArchivo" class="form-control" onchange="fileSlected();">
+                        <br>
+                    </div>
+
+                    <div class="custom-btn-group mt-4" align="center">
+                        <input  type="button" href="" class="btn custom-btn custom-btn-bg custom-btn-link" name="btn_Regresar" value="Regresar" id="btn_Regresar" style="width: 172px" >
+                        <input  type="submit" href="" class="btn custom-btn custom-btn-bg custom-btn-link" name="btn_Firmar" value="Firmar" id="btn_Firmar" style="width: 172px; display: none;" >
+                    </div>
                 </div>                 
             </form>
-            
-            <div align="center">
-                <div class="col-8 center-block mt-4" align="center">
-                    <div id="details" style="display: none;">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
-                    </div>
-                    <div>
-                        <a id="m-o-det" onclick="details()">Ver detalles</a>
-                    </div>
-                </div> 
-            </div>
+
         </div>
     </div>
 </section>
 
 <script languaje="javascript">
-    function details(){
-        
-        if(document.getElementById("details").style.display==="none"){
-            document.getElementById("details").style.display="block";
-            document.getElementById("m-o-det").innerHTML="Ocultar detalles";
+
+    document.getElementById("btnToken").addEventListener("click", function () {
+        if (document.getElementById("fluToken").value.length === 0) {
+            document.getElementById("error").innerHTML = "Introducir un archivo";
+        } else {
+            document.getElementById("error").innerHTML = "";
+            document.getElementById("Token").style.display = "none";
+            document.getElementById("Archivo").style.display = "block";
         }
-        else{
-            document.getElementById("details").style.display="none";
-            document.getElementById("m-o-det").innerHTML="Ver detalles";
-        }
-    }
-    
-    document.getElementById("btnToken").addEventListener("click", function(){
-        if(document.getElementById("fluToken").value.length===0){
-            
-             document.getElementById("error").innerHTML="Introducir un archivo";
-        }
-        else{
-            document.getElementById("error").innerHTML="";
-            document.getElementById("Token").style.display="none";
-            document.getElementById("Archivo").style.display="block";
-        }
-    });
-    
-    document.getElementById("btnArchivo").addEventListener("click", function(){
-        document.getElementById("Token").style.display="block";
-        document.getElementById("Archivo").style.display="none";
-    });
-    
-     document.getElementById("fluArchivo").addEventListener("onchange", function(){
-        alert("bien");
     });
 
+    document.getElementById("btn_Regresar").addEventListener("click", function () {
+        document.getElementById("Token").style.display = "block";
+        document.getElementById("Archivo").style.display = "none";
+    });
+
+    function tokenSelected() {
+            document.getElementById("error").innerHTML = "";
+            document.getElementById("Token").style.display = "none";
+            document.getElementById("Archivo").style.display = "block";
+    }
+    
+    function fileSlected(){
+            document.getElementById("btn_Firmar").style.display = "inline-block";
+    }
+    
 </script>

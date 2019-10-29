@@ -19,7 +19,6 @@
                 if (request.getAttribute("edo") != null) {
                     System.out.println("Edo: " + request.getAttribute("edo"));
                     out.println(request.getAttribute("edo"));
-
                 }
             %>
             <br><br>
@@ -148,8 +147,6 @@
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="?op=jspAcceso.jsp"> Iniciar Sesión </a>
                         </div>   
                         <input  type="hidden" name="org" value="regUsu" id="org">
-
-
                     </td>
                     <td>
                     </td>

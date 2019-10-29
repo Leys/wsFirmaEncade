@@ -139,7 +139,7 @@
                     %>
                     
                     <li class="nav-item">
-                        <a href="?op=jspAcceso.jsp" class="nav-link"><span data-hover="Iniciar Sesion">Iniciar sesion</span></a>
+                        <a href="index.jsp?op=jspAcceso.jsp" class="nav-link"><span data-hover="Iniciar Sesion">Iniciar sesion</span></a>
                         
                     </li>
                     

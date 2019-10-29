@@ -96,5 +96,33 @@ public class clsUsuario extends clsConexion{
         rs.close();
         return res;
     }
+   
+   public String getUltH() throws SQLException {
+        String consultaSql;
+        ResultSet rs;
+        consultaSql="call tspObtenerUltH("+this.Id+");";
+        st= (Statement) cnn.createStatement();
+        rs= st.executeQuery(consultaSql);
+        String res="";
+        while(rs.next()){
+            res=rs.getString(1);
+        }
+        rs.close();
+        return res;
+    }
+   
+   public String firmar(String link, String firma, String llave, String h) throws SQLException {
+        String consultaSql;
+        ResultSet rs;
+        consultaSql="call firmarUs("+this.Id+");";
+        st= (Statement) cnn.createStatement();
+        rs= st.executeQuery(consultaSql);
+        String res="";
+        while(rs.next()){
+            res=rs.getString(1);
+        }
+        rs.close();
+        return res;
+    }
     
 }

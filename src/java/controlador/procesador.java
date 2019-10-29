@@ -6,6 +6,7 @@
 package controlador;
 
 import clases.clsDatos;
+import clases.clsUsuario;
 import com.mysql.jdbc.Connection;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -46,16 +47,20 @@ public class procesador extends HttpServlet {
                     clsDatos usu = new clsDatos(0,usuario, pwd,"",0,"");
 
                     Connection cnn=usu.conexion();
-
+                    clsUsuario user=new clsUsuario();
+                    
                     ResultSet rsFrm;
                     rsFrm =usu.validarAcceso();
                     while(rsFrm.next())
                     {
+                        user.setId(Integer.parseInt(rsFrm.getString(1)));
                         usu.setCve(Integer.parseInt(rsFrm.getString(1)));
                         if(usu.getCve()!=0)
                         {
+                            user.setNombre(rsFrm.getString(2));
                             usu.setNombre(rsFrm.getString(2));
 
+                            user.setEstatus(Integer.parseInt(rsFrm.getString(3)));
                             usu.setEstatus(Integer.parseInt(rsFrm.getString(3)));
                         }
                     }
@@ -67,6 +72,10 @@ public class procesador extends HttpServlet {
                     {
                        //se genera una sesion con los datos del modelo
                         request.getSession().setAttribute("usuario1", usu);
+                        request.getSession().setAttribute("usuario", user);
+                        
+                        
+                        clsUsuario aux=(clsUsuario)request.getSession().getAttribute("usuario");
                         
                         request.setAttribute("op", "jspPrincipal.jsp");
                         request.getRequestDispatcher("index.jsp").forward(request, response); 

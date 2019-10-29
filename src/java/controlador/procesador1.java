@@ -71,11 +71,9 @@ public class procesador1 extends HttpServlet {
         String firma = "";
         String h = "";
         //decargar semillas, guardar llave publica y h
-        for (byte[] f : obj.getUltFirma()) {
-            firma += (new BigInteger(f)).toString(16) + ",";
-        }
         
-        firma=firma.substring(0, firma.length()-1);
+        firma=obj.getUltFirmaHex();
+        
         for (int uh : obj.getUltH()){
             h += String.valueOf(uh) + ",";
         }
@@ -89,20 +87,20 @@ public class procesador1 extends HttpServlet {
             request.setAttribute("edo", "El usuario ya existe");
         }
         else{
-            request.setAttribute("edo", "Exito, por favor almacene su token en un lugar seguro");
-            BigInteger s0 = new BigInteger(obj.getUltSeed()[0]);
-            BigInteger s1 = new BigInteger(obj.getUltSeed()[1]);
-            String semilla = s0.toString(16) + "\n" + s1.toString(16);
+            String[] aux=obj.getUltSeedHex();
+            String semilla=aux[0]+"\n"+aux[1];
             request.getSession().setAttribute("semilla", semilla);
+            request.setAttribute("edo", "Exito, por favor almacene su token en un lugar seguro");
             request.setAttribute("ban", "1");
         }
-        
         
         request.setAttribute("op", "jspRegistroUsuario.jsp");
         request.getRequestDispatcher("index.jsp").forward(request, response);
 
     }
 
+
+    
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.

@@ -5,9 +5,12 @@
  */
 package controlador;
 
+import clases.clsFirma;
+import clases.clsUsuario;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -26,9 +29,7 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
  *
  * @author diego
  */
-
-
-@MultipartConfig(location="/tmp", fileSizeThreshold=1024*1024,maxFileSize=1024*1024*5, maxRequestSize=1024*1024*5*5)
+@MultipartConfig(location = "/tmp", fileSizeThreshold = 1024 * 1024, maxFileSize = 1024 * 1024 * 5, maxRequestSize = 1024 * 1024 * 5 * 5)
 
 public class multipart extends HttpServlet {
 
@@ -48,35 +49,93 @@ public class multipart extends HttpServlet {
             ServletFileUpload upload = new ServletFileUpload(factory);
 
             List items = upload.parseRequest(request);
-            
+            String op = "";
             for (Object item : items) {
                 FileItem uploaded = (FileItem) item;
-                if (!uploaded.isFormField()) {
-                    String texto=leerArchivo(uploaded);
-                    System.out.println("Contenido: "+texto);
-                } else {
-                    String key = uploaded.getFieldName();
-                    String valor = uploaded.getString();
-                    System.out.print("No file= ");
-                    System.out.println(key + ":" + valor);
+                if (uploaded.isFormField()) {
+                    if (!"org".equals(uploaded.getFieldName())) {
+                        op = uploaded.getString();
+                    }
                 }
             }
-        } catch (FileUploadException ex) {
-            System.out.println("Error: "+ex.getMessage());
+
+            switch (op) {
+                case "Firmar":
+                    firmar(request, items);
+                    request.setAttribute("op", "jspFirmaMen.jsp");
+                    request.getRequestDispatcher("index.jsp").forward(request, response);
+                    break;
+
+                default:
+                    break;
+
+            }
+        } catch (FileUploadException | SQLException ex) {
+            System.out.println("Error: " + ex.getMessage());
         }
     }
-    
-    private String leerArchivo(FileItem flu){
-        String texto="";
+
+    private void firmar(HttpServletRequest request, List items)
+            throws ServletException, IOException, FileUploadException, SQLException {
+        
+        String token=null;
+        byte[] archivo=null;
+        
+        for (Object item : items) {
+            FileItem uploaded = (FileItem) item;
+            if (!uploaded.isFormField()) {
+               if(uploaded.getFieldName().equals("fluToken")){
+                  token=leerArchivo(uploaded);
+                  token=token.substring(0, token.length()-1);
+               }
+               else if(uploaded.getFieldName().equals("fluArchivo")){
+                    archivo=uploaded.get();
+               }
+            }
+        }
+        
+        if(token!=null && archivo!=null){
+           
+           clsFirma firmar=new clsFirma();
+           
+           //asignar ultima semilla
+           firmar.setUltSeedHex(token.split("\n")[0],token.split("\n")[0]);
+           
+           //Asignar H
+           clsUsuario user=(clsUsuario)request.getSession().getAttribute("usuario");
+         
+           user.conexion();
+           String[] ultHAux=user.getUltH().split(",");
+           int ultH[]=new int[ultHAux.length];
+           for(int i=0;i<ultHAux.length;i++){
+               ultH[i]=Integer.parseInt(ultHAux[1]);
+           }
+           firmar.setUltH(ultH);
+           
+           
+           //firmar
+           firmar.Firmar(archivo);
+               
+           
+           System.out.println("Done");
+        }
+        else{
+            request.setAttribute("det", "Error con los archivos");
+        }
+        
+    }
+
+    private String leerArchivo(FileItem flu) {
+        String texto = "";
         try {
-            InputStream is=flu.getInputStream();
+            InputStream is = flu.getInputStream();
             int r;
-            do{
-                r=is.read();
-                texto+=(char)r;
-            }while(r!=-1);
-        } catch (IOException ex) {
-            System.out.println("Error: "+ex.getMessage());
+            do {
+                r = is.read();
+                texto += (char) r;
+            } while (r != -1);
+        } catch (IOException ex){
+            System.out.println("Error: " + ex.getMessage());
         }
         return texto;
     }
