@@ -11,14 +11,14 @@
         <section class="container">
         <div class="container">
 
-            <div class="about-text align-items-center">
-                <center>
-                <br><br>
-                    <h3>
-                        <span class="mr-2" > Verificación de cadena</span>
-                    </h3>
-                <br>
-                </center>
+    <div class="about-text align-items-center">
+        <center>
+            <br><br>
+            <h3>
+                <span class="mr-2" > Verificación de cadena</span>
+            </h3>
+            <br>
+        </center>
 
             </div>
             <div class="Instrucciones col-3">
@@ -92,4 +92,4 @@
             }
 
         </script>
-      
+  

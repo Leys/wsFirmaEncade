@@ -7,10 +7,12 @@ package clases;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.nio.ByteBuffer;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -73,12 +75,12 @@ public class clsFirma {
     
     
     //Firma un numero aleatorio para la creacion de la primer cadena
-    public void iniciarNuevo(){
-        seed=genSemillas();
-        ultSeed=getSeed();
+    public void iniciarNuevo() throws IOException{
+        this.seed=genSemillas();
+        this.ultSeed=getSeed();
         
         String m0=Double.toString(Math.random()*Math.pow(2, 32));
-        ultH=calcH(m0);
+        this.ultH=calcH(m0);
         FirmarIn(m0);
        
     }
@@ -97,7 +99,7 @@ public class clsFirma {
         return ByteBuffer.wrap(bytes).getInt();
     }
     
-    private byte[][] genSemillas(){
+    private byte[][] genSemillas2(){
         byte[][] s=new byte[16][32];
         for(int i=0;i<16;i++){
             s[i]=Double.toString(Math.random()*Math.pow(2, 32)).getBytes();
@@ -105,11 +107,13 @@ public class clsFirma {
         return s;
     }
     
-    private byte[][] genSemillas2() throws IOException{
-        byte[][] s=new byte[16][32];
-        s[0]=Double.toString(Math.random()*Math.pow(2, 32)).getBytes();
-        s[1]=Double.toString(Math.random()*Math.pow(2, 32)).getBytes();
+    private byte[][] genSemillas() throws IOException{
         
+        BigInteger s0=new BigInteger(255, new Random());
+        byte[][] s=new byte[16][32];
+        s[0]=(new BigInteger(255, new Random())).toByteArray();
+        s[1]=(new BigInteger(255, new Random())).toByteArray();
+       
         for(int i=2;i<16;i++){
             ByteArrayOutputStream output = new ByteArrayOutputStream();
             output.write(s[i-2]);
@@ -163,7 +167,7 @@ public class clsFirma {
         return getUltFirma();
     }
     
-    public byte[][] Firmar(String m){
+    public byte[][] Firmar(String m) throws IOException{
         //generar firma
         seed=genSemillas();
         llave=calcLlave();
