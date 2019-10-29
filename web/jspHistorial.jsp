@@ -27,39 +27,42 @@
         <!-- CONTENIDO -->
         <section>
             <center>
+                <form action="historial.do" method="post" id="frmHistU" name="frmHistU"> 
                 <table >
                     
                     <tr>
                         <td>
                         </td>
                         <td>
-                            
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        
+                        <td>
+                            <select class="small-text" align="center">
+                                <option value="0">--Selecciona el usuario--</option>
+                                <option value="1">Usuario 1</option>
+                                <option value="2">Usuario 2</option>
+                                <option value="3">Usuario 3</option>
+                            </select>
                         </td>
                         <td>
+                            <div class="custom-btn-group mt-4" align="center">
+                                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                                <input  type="submit"  class="btn custom-btn custom-btn-bg custom-btn-link"name="btnMostrar"value="Mostar"id="btnMostrar" style="width: 172px" >
+                            </div>
                         </td>
                     </tr>
                     
                     <tr>
                         <td>
                         </td>
-                        <td >
-                            <form action=""align="center">
-                                
-
-                                <div>
-                                    <br>
-                                    &nbsp;&nbsp;
-                                </div> 
-                                <div>
-                                    <!--  Agregar más elementos   -->
-                                </div>   
-                        
-                      
-                        </td>
                         <td>
                         </td>
                     </tr>
                 </table>
+                </form>
             </center>
             <br>
             </div>
