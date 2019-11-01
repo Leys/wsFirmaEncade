@@ -114,7 +114,7 @@ public class clsUsuario extends clsConexion{
    public String firmar(String link, String firma, String llave, String h) throws SQLException {
         String consultaSql;
         ResultSet rs;
-        consultaSql="call firmarUs("+this.Id+");";
+        consultaSql="call tspFirmarNuevoMensaje("+this.Id+", '"+llave+"', '"+firma+"', '"+h+"', '"+link+"');";
         st= (Statement) cnn.createStatement();
         rs= st.executeQuery(consultaSql);
         String res="";

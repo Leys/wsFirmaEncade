@@ -40,7 +40,7 @@ public class procesador extends HttpServlet {
         
         String usuario=request.getParameter("txtUsuario");
         String pwd=request.getParameter("txtContra");
-        
+        System.out.println(usuario+":"+pwd);
         if(!usuario.equals("")&& !pwd.equals("")) {
                 
                 //int clave,String usuario, String pas, String nombre,int estatus, String foto
@@ -76,20 +76,21 @@ public class procesador extends HttpServlet {
                         
                         
                         clsUsuario aux=(clsUsuario)request.getSession().getAttribute("usuario");
-                        
                         request.setAttribute("op", "jspPrincipal.jsp");
                         request.getRequestDispatcher("index.jsp").forward(request, response); 
                     }
                     else{
-                        //FALTA CREAR VISTA PARA CAMPOS VACÍOS
-                        request.getRequestDispatcher("jspAcceso.jsp").forward(request, response); 
+                        request.setAttribute("es", "Datos incorrectos");
+                        request.setAttribute("op", "jspAcceso.jsp");
+                        request.getRequestDispatcher("index.jsp").forward(request, response);
                     }
 
             }
             else
             {
-                System.out.println("Error");
-                    //request.getRequestDispatcher("jspErrorCampos.jsp").forward(request, response);
+                request.setAttribute("es", "Campos vacios");
+                        request.setAttribute("op", "jspAcceso.jsp");
+                        request.getRequestDispatcher("index.jsp").forward(request, response);
             }
         
         

@@ -17,7 +17,15 @@
                 Firma del mensaje
             </h2>
             <div id="error">
-
+                
+            <%
+                if (request.getAttribute("res") != null) {
+            %>
+            <%=request.getAttribute("res")%>
+            <%
+                }
+            %>
+            
             </div>
         </div>
     </div>
@@ -29,10 +37,10 @@
                 </h3>
             </ol>
             <li value="1">
-                Suba sus semillas
+                Suba sus archivos
             </li>
             <li>
-                Suba sus archivos
+                Suba sus semillas
             </li>
             <li>
                 Descargue la firma
@@ -54,11 +62,13 @@
                     <div class="label">Selecciona la semilla</div>
                     <input type="file" name="fluToken" id="fluToken" class="form-control" accept=".key" onchange="tokenSelected();">
                     <br>
-                    <input type="button" name="btnToken" id="btnToken" value="Continuar" class="btn custom-btn custom-btn-bg custom-btn-link">
+                    <input type="button" name="btnToken" id="btn_Regresar" value="Regresar" class="btn custom-btn custom-btn-bg custom-btn-link">
+                    <input  type="submit" href="" class="btn custom-btn custom-btn-bg custom-btn-link" name="btn_Firmar" value="Firmar" id="btn_Firmar" style="width: 172px; display: none;" >
+
                 </div>
 
 
-                <div id="Archivo">
+                <div class="col-12 form-control" align="center" id="Archivo">
                     <div class="col-12 form-control " align="center" >
                         <div class="label">Selecciona el archivo</div>
                         <input type="file" name="fluArchivo" id="fluArchivo" class="form-control" onchange="fileSlected();">
@@ -66,8 +76,7 @@
                     </div>
 
                     <div class="custom-btn-group mt-4" align="center">
-                        <input  type="button" href="" class="btn custom-btn custom-btn-bg custom-btn-link" name="btn_Regresar" value="Regresar" id="btn_Regresar" style="width: 172px" >
-                        <input  type="submit" href="" class="btn custom-btn custom-btn-bg custom-btn-link" name="btn_Firmar" value="Firmar" id="btn_Firmar" style="width: 172px; display: none;" >
+                        <input  type="button" href="" class="btn custom-btn custom-btn-bg custom-btn-link" name="btn_Regresar" value="Continuar" id="btn_Continuar" style="width: 172px" >
                     </div>
                 </div>                 
             </form>
@@ -78,29 +87,29 @@
 
 <script languaje="javascript">
 
-    document.getElementById("btnToken").addEventListener("click", function () {
-        if (document.getElementById("fluToken").value.length === 0) {
+    document.getElementById("btn_Continuar").addEventListener("click", function () {
+        if (document.getElementById("fluArchivo").value.length === 0) {
             document.getElementById("error").innerHTML = "Introducir un archivo";
         } else {
             document.getElementById("error").innerHTML = "";
-            document.getElementById("Token").style.display = "none";
-            document.getElementById("Archivo").style.display = "block";
+            document.getElementById("Archivo").style.display = "none";
+            document.getElementById("Token").style.display = "block";
         }
     });
 
     document.getElementById("btn_Regresar").addEventListener("click", function () {
-        document.getElementById("Token").style.display = "block";
-        document.getElementById("Archivo").style.display = "none";
+        document.getElementById("Archivo").style.display = "block";
+        document.getElementById("Token").style.display = "none";
     });
 
+    function fileSlected() {
+        document.getElementById("error").innerHTML = "";
+        document.getElementById("Archivo").style.display = "none";
+        document.getElementById("Token").style.display = "block";
+    }
+
     function tokenSelected() {
-            document.getElementById("error").innerHTML = "";
-            document.getElementById("Token").style.display = "none";
-            document.getElementById("Archivo").style.display = "block";
+        document.getElementById("btn_Firmar").style.display = "inline-block";
     }
-    
-    function fileSlected(){
-            document.getElementById("btn_Firmar").style.display = "inline-block";
-    }
-    
+
 </script>

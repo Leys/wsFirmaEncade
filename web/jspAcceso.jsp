@@ -18,6 +18,14 @@
     <div class="about-text align-items-center">
         <center>
             <br><br>
+            <%
+                if (request.getAttribute("es") != null) {
+            %>
+
+            <div id="error" style="text-align: center; color: red; font-size: 1.2rem; font-weight: bold;"><%=request.getAttribute("es")%></div>
+            <%
+                }
+            %>
             <h3><span class="mr-2" > Acceso al sistema</span></h3>
             <br>
         </center>
@@ -74,7 +82,7 @@
                         <br>
                         &nbsp;&nbsp;
                         <div class="auto-style4"align="center">
-                            ¿No tienes cuenta? <a href="?op=jspRegistroUsuario.jsp"> Regístrate aquí </a>
+                            ¿No tienes cuenta? <a href="index.jsp?op=jspRegistroUsuario.jsp"> Regístrate aquí </a>
                             <!--document.location.href="jspRegistroUsuario.jsp";-->
                         </div>
                     </td>

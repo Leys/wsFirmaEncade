@@ -24,6 +24,7 @@ public class clsFirma {
 
     private byte[][] seed;
     private int[] ultH;
+    private int[] H;
     private byte[][] ultSeed;
 
     private byte[][] link;
@@ -40,6 +41,10 @@ public class clsFirma {
         ultH = uh;
         ultFirma = uf;
 
+    }
+
+    public int[] getH() {
+        return H.clone();
     }
 
     public void setUltH(int[] ultH) {
@@ -140,8 +145,6 @@ public class clsFirma {
         return s;
     }
 
-
-    
     private int[] calcH(byte[] mensaje) {
         byte[] m = calcHash(mensaje);
         int[] h = new int[16];
@@ -168,13 +171,14 @@ public class clsFirma {
         return getUltFirma();
     }
 
-    public byte[][] Firmar(byte[] m) throws IOException {
+    public String Firmar(byte[] m) throws IOException {
         //generar firma
         seed = genSemillas();
         llave = calcLlave();
 
         firma = getSeed();
         int[] h = calcH(m);
+        H = h.clone();
         for (int i = 0; i < 16; i++) {
             int p = (int) Math.pow(2, 16) - h[i];
             for (int j = 0; j < p; j++) {
@@ -193,16 +197,21 @@ public class clsFirma {
                 link[i] = calcHash(link[i]);
             }
         }
-        //depurar(m);
-        return getFirma();
+
+        String informacion = depurar(m);
+        return informacion;
 
     }
 
-    public void depurar(byte[] mensaje) {
+    public String depurar(byte[] mensaje) {
+        String inf = "";
         int[] h = calcH(mensaje);
-        byte[][] aux = getLink();
+        String[] firmaA = this.getFirmaHex().split(",");
+        String[] linkA = this.getLinkHex().split(",");
+        String[] llavePA = this.getLlaveHex().split(",");
 
         System.out.println(" 2n: " + (int) Math.pow(2, 16));
+        inf += "2n: " + (int) Math.pow(2, 16) + "\n";
 
         for (int i = 0; i < 16; i++) {
 
@@ -211,35 +220,43 @@ public class clsFirma {
 
             //int e=(int)(h[i]-((ultH[i]*h[i])/(Math.pow(2, 16)-1)));
             //double dx=(h[i]-((ultH[i]*h[i])/((Math.pow(2, 16)-1))));
-            int e0 = (int) Math.ceil((Math.pow(2, 16) - ultH[i] - dx));
             System.out.println(i + " f0: " + (int) (Math.pow(2, 16) - ultH[i]));
-            System.out.println(i + " e0: " + e0);
-            System.out.println(i + " e1: " + e);
-            //System.out.println(i+" co: "+(e+e0));
+            System.out.println(i + " e: " + e);
             System.out.println(i + " h0: " + ultH[i]);
             System.out.println(i + " h1: " + h[i]);
             System.out.println(i + " dx: " + dx + "\n");
 
-            for (int j = 0; j < e; j++) {
-                aux[i] = calcHash(aux[i]);
-            }
+            inf += "i= " + i + "\n";
+            inf += "\th0: " + ultH[i] + "\n";
+            inf += "\th1: " + h[i] + "\n";
+            inf += "\tf0: " + (int) (Math.pow(2, 16) - ultH[i]) + "\n";
+            inf += "\te: " + e + "\n";
+            inf += "\tdx: " + dx + "\n";
+            inf += "\tfirma: " + firmaA[i] + "\n";
+            inf += "\tlink: " + linkA[i] + "\n";
+            inf += "\tllave: " + llavePA[i] + "\n";
+
+//            for (int j = 0; j < e; j++) {
+//                aux[i] = calcHash(aux[i]);
+//            }
         }
 
-        for (int i = 0; i < 16; i++) {
-
-            if (toDouble(aux[i]) == toDouble(ultFirma[i])) {
-                //System.out.println("\nCorrectoP");
-            } else {
-                System.out.println("\n" + i + " MalP\t ");
-                int e = (int) Math.ceil((Math.pow(2, 16) - ultH[i] - h[i] + ((ultH[i] * h[i]) / ((Math.pow(2, 16) - 1)))));
-                int e2 = (int) (h[i] - ((ultH[i] * h[i]) / (Math.pow(2, 16) - 1)));
-                int p = (int) (Math.pow(2, 16) - ultH[i]);
-                System.out.println("f0:" + p);
-                System.out.println("se:" + (e2 + e));
-                System.out.println("r1:" + (e2));
-
-            }
-        }
+//        for (int i = 0; i < 16; i++) {
+//
+//            if (toDouble(aux[i]) == toDouble(ultFirma[i])) {
+//                //System.out.println("\nCorrectoP");
+//            } else {
+//                System.out.println("\n" + i + " MalP\t ");
+//                int e = (int) Math.ceil((Math.pow(2, 16) - ultH[i] - h[i] + ((ultH[i] * h[i]) / ((Math.pow(2, 16) - 1)))));
+//                int e2 = (int) (h[i] - ((ultH[i] * h[i]) / (Math.pow(2, 16) - 1)));
+//                int p = (int) (Math.pow(2, 16) - ultH[i]);
+//                System.out.println("f0:" + p);
+//                System.out.println("se:" + (e2 + e));
+//                System.out.println("r1:" + (e2));
+//
+//            }
+//        }
+        return inf;
     }
 
     public byte[][] verificarFirma(byte[][] f1, byte[][] f0, int[] uh, byte[] mensaje) {
@@ -282,21 +299,44 @@ public class clsFirma {
     }
 
     public String[] getUltSeedHex() {
-        String semilla[]=new String[2];
-        semilla[0]=byteToHex(this.ultSeed[0]);
-        semilla[1]=byteToHex(this.ultSeed[1]);
+        String semilla[] = new String[2];
+        semilla[0] = byteToHex(this.ultSeed[0]);
+        semilla[1] = byteToHex(this.ultSeed[1]);
         return semilla;
     }
-    
-    public String[] getFirmaHex() {
-        String[] f=new String[16];
-        for(int i=0;i<this.firma.length;i++){
-            f[i]=byteToHex(firma[i]);
+
+    public String getFirmaHex() {
+        String hfirma = "";
+        for (byte[] f : this.firma) {
+            hfirma += byteToHex(f) + ",";
         }
-        return f;
+        hfirma = hfirma.substring(0, hfirma.length() - 1);
+
+        return hfirma;
+
     }
-    
-    public void setUltSeedHex(String s0, String s1) throws IOException{
+
+    public String getLinkHex() {
+        String hfirma = "";
+        for (byte[] f : this.link) {
+            hfirma += byteToHex(f) + ",";
+        }
+        hfirma = hfirma.substring(0, hfirma.length() - 1);
+
+        return hfirma;
+
+    }
+
+    public String getLlaveHex() {
+        String hfirma = "";
+        for (byte[] f : this.llave) {
+            hfirma += byteToHex(f) + ",";
+        }
+        hfirma = hfirma.substring(0, hfirma.length() - 1);
+        return hfirma;
+    }
+
+    public void setUltSeedHex(String s0, String s1) throws IOException {
 
         byte[][] s = new byte[16][32];
         s[0] = hextoByte(s0);
@@ -308,8 +348,8 @@ public class clsFirma {
             output.write(s[i - 1]);
             s[i] = calcHash(output.toByteArray());
         }
-       this.ultSeed=s.clone();
-        
+        this.ultSeed = s.clone();
+
     }
 
     private String byteToHex(byte[] f) {

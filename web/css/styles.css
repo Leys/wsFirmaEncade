@@ -51,6 +51,10 @@ and open the template in the editor.
     color: red;
 }
 
-#Archivo{
+#Token{
     display: none;
+}
+
+.succes{
+    background-color: #06c406;
 }

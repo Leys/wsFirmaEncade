@@ -61,9 +61,7 @@ public class multipart extends HttpServlet {
 
             switch (op) {
                 case "Firmar":
-                    firmar(request, items);
-                    request.setAttribute("op", "jspFirmaMen.jsp");
-                    request.getRequestDispatcher("index.jsp").forward(request, response);
+                    firmar(request, response,items);
                     break;
 
                 default:
@@ -75,54 +73,79 @@ public class multipart extends HttpServlet {
         }
     }
 
-    private void firmar(HttpServletRequest request, List items)
+    private void firmar(HttpServletRequest request, HttpServletResponse response, List items)
             throws ServletException, IOException, FileUploadException, SQLException {
+
+        double inicio=System.currentTimeMillis();
         
-        String token=null;
-        byte[] archivo=null;
         
+        String token = null;
+        byte[] archivo = null;
+
         for (Object item : items) {
             FileItem uploaded = (FileItem) item;
             if (!uploaded.isFormField()) {
-               if(uploaded.getFieldName().equals("fluToken")){
-                  token=leerArchivo(uploaded);
-                  token=token.substring(0, token.length()-1);
-               }
-               else if(uploaded.getFieldName().equals("fluArchivo")){
-                    archivo=uploaded.get();
-               }
+                if (uploaded.getFieldName().equals("fluToken")) {
+                    token = leerArchivo(uploaded);
+                    token = token.substring(0, token.length() - 1);
+                } else if (uploaded.getFieldName().equals("fluArchivo")) {
+                    archivo = uploaded.get();
+                }
             }
         }
-        
-        if(token!=null && archivo!=null){
-           
-           clsFirma firmar=new clsFirma();
-           
-           //asignar ultima semilla
-           firmar.setUltSeedHex(token.split("\n")[0],token.split("\n")[0]);
-           
-           //Asignar H
-           clsUsuario user=(clsUsuario)request.getSession().getAttribute("usuario");
-         
-           user.conexion();
-           String[] ultHAux=user.getUltH().split(",");
-           int ultH[]=new int[ultHAux.length];
-           for(int i=0;i<ultHAux.length;i++){
-               ultH[i]=Integer.parseInt(ultHAux[1]);
-           }
-           firmar.setUltH(ultH);
-           
-           
-           //firmar
-           firmar.Firmar(archivo);
-               
-           
-           System.out.println("Done");
-        }
-        else{
+
+        if (token != null && archivo != null) {
+
+            clsFirma firmar = new clsFirma();
+
+            //asignar ultima semilla
+            firmar.setUltSeedHex(token.split("\n")[0], token.split("\n")[0]);
+
+            //Asignar H
+            clsUsuario user = (clsUsuario) request.getSession().getAttribute("usuario");
+
+            user.conexion();
+            String[] ultHAux = user.getUltH().split(",");
+            int ultH[] = new int[ultHAux.length];
+            for (int i = 0; i < ultHAux.length; i++) {
+                ultH[i] = Integer.parseInt(ultHAux[1]);
+            }
+            firmar.setUltH(ultH);
+
+            //firmar
+            String inf=firmar.Firmar(archivo);
+
+            String firma = firmar.getFirmaHex();
+            String link=firmar.getLinkHex();
+            String llaveP=firmar.getLlaveHex();
+            String h = "";
+            
+            for (int uh : firmar.getH()){
+                h += String.valueOf(uh) + ",";
+            }
+            h = h.substring(0, h.length() - 1);
+                      
+            if(user.firmar(link, firma, llaveP, h).equals("0")){
+                request.setAttribute("res", "Error");
+                request.setAttribute("op", "jspFirmaMen.jsp");
+            }
+            else{
+                request.setAttribute("res", inf);
+                request.getSession().setAttribute("firma", firma);
+                request.setAttribute("op", "jspFirmaRealizada.jsp");
+            }
+
+            System.out.println("DoneF");
+        } else {
             request.setAttribute("det", "Error con los archivos");
+            request.setAttribute("op", "jspFirmaMen.jsp");
+        
         }
         
+        System.out.println("Tiempo firma: "+(System.currentTimeMillis()-inicio));
+        
+        request.getRequestDispatcher("index.jsp").forward(request, response);
+
     }
 
     private String leerArchivo(FileItem flu) {
@@ -134,7 +157,7 @@ public class multipart extends HttpServlet {
                 r = is.read();
                 texto += (char) r;
             } while (r != -1);
-        } catch (IOException ex){
+        } catch (IOException ex) {
             System.out.println("Error: " + ex.getMessage());
         }
         return texto;

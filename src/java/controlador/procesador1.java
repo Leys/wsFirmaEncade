@@ -59,6 +59,9 @@ public class procesador1 extends HttpServlet {
     private void registrarUsuario(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException {
 
+        
+        double inicio=System.currentTimeMillis();
+        
         clsFirma obj = new clsFirma();
         obj.iniciarNuevo();
 
@@ -93,6 +96,9 @@ public class procesador1 extends HttpServlet {
             request.setAttribute("edo", "Exito, por favor almacene su token en un lugar seguro");
             request.setAttribute("ban", "1");
         }
+        
+        
+        System.out.println("Tiempo registro: "+(System.currentTimeMillis()-inicio));
         
         request.setAttribute("op", "jspRegistroUsuario.jsp");
         request.getRequestDispatcher("index.jsp").forward(request, response);
