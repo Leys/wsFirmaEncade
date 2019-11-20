@@ -6,6 +6,7 @@
 package jvfirmaencade;
 
 import clases.clsUsuario;
+import vista.jpnlFirmar;
 
 /**
  *
@@ -16,7 +17,7 @@ public class jfrmUsPrincipal extends javax.swing.JFrame {
     /**
      * Creates new form jfrmUsPrincipal
      */
-    clsUsuario user;
+    public clsUsuario user;
     public jfrmUsPrincipal() {
         initComponents();
     }
@@ -35,7 +36,7 @@ public class jfrmUsPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        jpnMain = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -50,21 +51,21 @@ public class jfrmUsPrincipal extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setText("Bienvenido");
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout jpnMainLayout = new javax.swing.GroupLayout(jpnMain);
+        jpnMain.setLayout(jpnMainLayout);
+        jpnMainLayout.setHorizontalGroup(
+            jpnMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpnMainLayout.createSequentialGroup()
                 .addGap(129, 129, 129)
                 .addComponent(jLabel1)
-                .addContainerGap(354, Short.MAX_VALUE))
+                .addContainerGap(425, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        jpnMainLayout.setVerticalGroup(
+            jpnMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpnMainLayout.createSequentialGroup()
                 .addGap(48, 48, 48)
                 .addComponent(jLabel1)
-                .addContainerGap(142, Short.MAX_VALUE))
+                .addContainerGap(168, Short.MAX_VALUE))
         );
 
         jMenu1.setText("Verificar");
@@ -76,6 +77,11 @@ public class jfrmUsPrincipal extends javax.swing.JFrame {
         jMenu3.setText("Mi cuenta");
 
         menuFirmar.setText("Firmar");
+        menuFirmar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuFirmarActionPerformed(evt);
+            }
+        });
         jMenu3.add(menuFirmar);
 
         jMenuItem2.setText("Mis datos");
@@ -98,16 +104,16 @@ public class jfrmUsPrincipal extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(81, 81, 81)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jpnMain, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(25, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(23, 23, 23))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jpnMain, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -116,6 +122,16 @@ public class jfrmUsPrincipal extends javax.swing.JFrame {
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void menuFirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuFirmarActionPerformed
+        jpnMain.removeAll();
+        jpnlFirmar reg=new jpnlFirmar();
+        reg.setVisible(true);
+        reg.setSize(32767, 32767);
+        reg.setUser(user);
+        jpnMain.add(reg);
+        jpnMain.updateUI();
+    }//GEN-LAST:event_menuFirmarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -160,7 +176,7 @@ public class jfrmUsPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jpnMain;
     private javax.swing.JMenuItem menuFirmar;
     // End of variables declaration//GEN-END:variables
 }

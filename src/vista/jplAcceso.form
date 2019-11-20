@@ -78,13 +78,16 @@
     </Component>
     <Component class="javax.swing.JTextField" name="jtxtUsuario">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Usuario"/>
+        <Property name="text" type="java.lang.String" value="dig"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jtxtContra">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Contrase&#xf1;a"/>
+        <Property name="text" type="java.lang.String" value="dig"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jtxtContraActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

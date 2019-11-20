@@ -59,9 +59,14 @@ public class jplAcceso extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel1.setText("Acceso");
 
-        jtxtUsuario.setText("Usuario");
+        jtxtUsuario.setText("dig");
 
-        jtxtContra.setText("Contraseña");
+        jtxtContra.setText("dig");
+        jtxtContra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtxtContraActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -134,9 +139,6 @@ public class jplAcceso extends javax.swing.JPanel {
                     JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
                     frame.dispose();
 
-
-                    
-
                 } else {
                     //Acceso incorrecto
                     jlblError.setText("Datos incorrectos");
@@ -149,6 +151,10 @@ public class jplAcceso extends javax.swing.JPanel {
             //                campos vacio
         }
     }//GEN-LAST:event_jtbnAceptarActionPerformed
+
+    private void jtxtContraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtxtContraActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtxtContraActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

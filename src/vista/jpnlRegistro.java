@@ -5,6 +5,16 @@
  */
 package vista;
 
+import clases.clsFirma;
+import clases.clsUsuario;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author diego
@@ -34,6 +44,7 @@ public class jpnlRegistro extends javax.swing.JPanel {
         jtxtContra = new javax.swing.JTextField();
         jtxtApellido = new javax.swing.JTextField();
         jtbnRegistrar = new javax.swing.JButton();
+        jlblError = new javax.swing.JLabel();
 
         setPreferredSize(new java.awt.Dimension(320, 300));
 
@@ -56,6 +67,13 @@ public class jpnlRegistro extends javax.swing.JPanel {
         });
 
         jtbnRegistrar.setText("Registrar");
+        jtbnRegistrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtbnRegistrarActionPerformed(evt);
+            }
+        });
+
+        jlblError.setText("jLabel2");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -64,9 +82,8 @@ public class jpnlRegistro extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(109, 109, 109)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(13, 13, 13))
+                    .addComponent(jlblError)
+                    .addComponent(jLabel1)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(jtbnRegistrar)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -75,14 +92,16 @@ public class jpnlRegistro extends javax.swing.JPanel {
                             .addComponent(jtxtNombre)
                             .addComponent(jtxtApellido, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jtxtContra, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(114, Short.MAX_VALUE))
+                .addContainerGap(111, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(33, 33, 33)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jlblError)
+                .addGap(13, 13, 13)
                 .addComponent(jtxtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jtxtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -102,9 +121,77 @@ public class jpnlRegistro extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jtxtApellidoActionPerformed
 
+    private void jtbnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtbnRegistrarActionPerformed
+        try {
+            // TODO add your handling code here:
+
+            double inicio = System.currentTimeMillis();
+
+            clsFirma obj = new clsFirma();
+            obj.iniciarNuevo();
+
+            String usuario = jtxtUsuario.getText();
+            String nombre = jtxtNombre.getText();
+            String ap = jtxtApellido.getText();
+            String pwd = jtxtContra.getText();
+            String confpwd = jtxtConfContra.getText();
+            String foto = "";
+            String firma = "";
+            String h = "";
+            //decargar semillas, guardar llave publica y h
+
+            if (usuario == "" || nombre == "" || ap == "" || pwd == "" || confpwd == "") {
+                jlblError.setText("Llenar todos los campos");
+            } else if (!pwd.equals(confpwd)) {
+                jlblError.setText("Las contraseñas no coinciden");
+
+            } else {
+                firma = obj.getUltFirmaHex();
+
+                for (int uh : obj.getUltH()) {
+                    h += String.valueOf(uh) + ",";
+                }
+                h = h.substring(0, h.length() - 1);
+
+                clsUsuario us = new clsUsuario();
+                us.conexion();
+                String res = us.registrarUsuI(nombre, confpwd, usuario, foto, h, firma);
+
+                if (res.equals("0")) {
+                    jlblError.setText("El usuario ya existe");
+                } else {
+                    String[] aux = obj.getUltSeedHex();
+                    String semilla = aux[0] + "\n" + aux[1];
+                    
+                    File archivo = new File("./seed.key");
+                    BufferedWriter bw;
+                    bw = new BufferedWriter(new FileWriter(archivo));
+                    if (archivo.exists()) {
+                        //Se sobreescribio la semilla
+                    }
+                    bw.write(semilla);
+                    bw.close();
+                    jlblError.setText("Usuario creado la semilla se ha almacenado en su computadora");
+//            request.getSession().setAttribute("semilla", semilla);
+//            request.setAttribute("edo", "Exito, por favor almacene su token en un lugar seguro");
+//            request.setAttribute("ban", "1");
+                }
+
+                System.out.println("Tiempo registro: " + (System.currentTimeMillis() - inicio));
+
+            }
+
+        } catch (IOException ex) {
+            Logger.getLogger(jpnlRegistro.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(jpnlRegistro.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jtbnRegistrarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jlblError;
     private javax.swing.JButton jtbnRegistrar;
     private javax.swing.JTextField jtxtApellido;
     private javax.swing.JTextField jtxtConfContra;
