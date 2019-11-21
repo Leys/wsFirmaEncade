@@ -100,7 +100,7 @@ public class clsFirma {
         return digest.digest(x);
     }
 
-    private int toDouble(byte[] bytes) {
+    public int toDouble(byte[] bytes) {
         return ByteBuffer.wrap(bytes).getInt();
     }
 
@@ -259,7 +259,8 @@ public class clsFirma {
         return inf;
     }
 
-    public byte[][] verificarFirma(byte[][] f1, byte[][] f0, int[] uh, byte[] mensaje) {
+    public String verificarFirma(byte[][] f1, byte[][] f0, int[] uh, byte[] mensaje) {
+        String details="";
         int[] h = calcH(mensaje);
         firma = f1;
 
@@ -284,7 +285,7 @@ public class clsFirma {
         }
         t = System.currentTimeMillis() - t;
         System.out.println("Tiempo de segunda verificacion: " + t);
-        return firma;
+        return details;
     }
 
     public String getUltFirmaHex() {
@@ -314,6 +315,14 @@ public class clsFirma {
 
         return hfirma;
 
+    }
+    
+    static public byte[][] getFirmaByte(String[] firma) {
+        byte[][] res=new byte[firma.length][32];
+        for(String f : firma){
+            res[0]=hextoByte(f);
+        }
+        return res;
     }
 
     public String getLinkHex() {

@@ -6,6 +6,7 @@
 package jvfirmaencade;
 
 import vista.jplAcceso;
+import vista.jplVerFirma;
 import vista.jpnlRegistro;
 
 /**
@@ -38,7 +39,7 @@ public class jfrmPrincipal extends javax.swing.JFrame {
 
         jpnMain = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
+        jmenuVerificar = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
         jMenu5 = new javax.swing.JMenu();
         jmenuReg = new javax.swing.JMenuItem();
@@ -57,13 +58,13 @@ public class jfrmPrincipal extends javax.swing.JFrame {
             .addGap(0, 270, Short.MAX_VALUE)
         );
 
-        jMenu1.setText("Verificar");
-        jMenu1.addMouseListener(new java.awt.event.MouseAdapter() {
+        jmenuVerificar.setText("Verificar");
+        jmenuVerificar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMenu1MouseClicked(evt);
+                jmenuVerificarMouseClicked(evt);
             }
         });
-        jMenuBar1.add(jMenu1);
+        jMenuBar1.add(jmenuVerificar);
 
         jMenu2.setText("Historial");
         jMenuBar1.add(jMenu2);
@@ -110,10 +111,6 @@ public class jfrmPrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenu1MouseClicked
-
     private void jmenuRegActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmenuRegActionPerformed
         jpnMain.removeAll();
         jpnlRegistro reg=new jpnlRegistro();
@@ -131,6 +128,17 @@ public class jfrmPrincipal extends javax.swing.JFrame {
         jpnMain.add(ac);
         jpnMain.updateUI();
     }//GEN-LAST:event_jmenuISesionActionPerformed
+
+    private void jmenuVerificarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jmenuVerificarMouseClicked
+        // TODO add your handling code here:
+        System.out.println("Hi");
+        jpnMain.removeAll();
+        jplVerFirma ac=new jplVerFirma();
+        ac.setVisible(true);
+        ac.setSize(615, 315);
+        jpnMain.add(ac);
+        jpnMain.updateUI();
+    }//GEN-LAST:event_jmenuVerificarMouseClicked
 
     /**
      * @param args the command line arguments
@@ -168,12 +176,12 @@ public class jfrmPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jmenuISesion;
     private javax.swing.JMenuItem jmenuReg;
+    private javax.swing.JMenu jmenuVerificar;
     private javax.swing.JPanel jpnMain;
     // End of variables declaration//GEN-END:variables
 }

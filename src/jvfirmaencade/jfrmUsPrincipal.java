@@ -6,8 +6,6 @@
 package jvfirmaencade;
 
 import clases.clsUsuario;
-import javax.swing.JFrame;
-import javax.swing.SwingUtilities;
 import vista.jpnlFirmar;
 
 /**
