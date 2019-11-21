@@ -23,6 +23,8 @@ public class jfrmPrincipal extends javax.swing.JFrame {
         frm.setVisible(true);
         frm.setSize(100, 200);
         jpnMain.add(frm);
+        
+        this.setExtendedState(MAXIMIZED_BOTH);
     }
 
     /**
@@ -113,14 +115,12 @@ public class jfrmPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenu1MouseClicked
 
     private void jmenuRegActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmenuRegActionPerformed
-        
         jpnMain.removeAll();
         jpnlRegistro reg=new jpnlRegistro();
         reg.setVisible(true);
         reg.setSize(320,300);
         jpnMain.add(reg);
         jpnMain.updateUI();
-        
     }//GEN-LAST:event_jmenuRegActionPerformed
 
     private void jmenuISesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmenuISesionActionPerformed

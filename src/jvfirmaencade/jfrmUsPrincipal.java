@@ -6,6 +6,8 @@
 package jvfirmaencade;
 
 import clases.clsUsuario;
+import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
 import vista.jpnlFirmar;
 
 /**
@@ -18,13 +20,17 @@ public class jfrmUsPrincipal extends javax.swing.JFrame {
      * Creates new form jfrmUsPrincipal
      */
     public clsUsuario user;
+
     public jfrmUsPrincipal() {
         initComponents();
+        this.setExtendedState(MAXIMIZED_BOTH);
+
     }
-    
+
     public jfrmUsPrincipal(clsUsuario us) {
         initComponents();
-        user=us;
+        user = us;
+        this.setExtendedState(MAXIMIZED_BOTH);
     }
 
     /**
@@ -44,7 +50,7 @@ public class jfrmUsPrincipal extends javax.swing.JFrame {
         jMenu3 = new javax.swing.JMenu();
         menuFirmar = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
+        jmenuCerrar = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -87,13 +93,13 @@ public class jfrmUsPrincipal extends javax.swing.JFrame {
         jMenuItem2.setText("Mis datos");
         jMenu3.add(jMenuItem2);
 
-        jMenuItem3.setText("jMenuItem3");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+        jmenuCerrar.setText("Cerrar Sesion");
+        jmenuCerrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
+                jmenuCerrarActionPerformed(evt);
             }
         });
-        jMenu3.add(jMenuItem3);
+        jMenu3.add(jmenuCerrar);
 
         jMenuBar1.add(jMenu3);
 
@@ -119,13 +125,16 @@ public class jfrmUsPrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
+    private void jmenuCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmenuCerrarActionPerformed
+        jfrmPrincipal frm = new jfrmPrincipal();
+        frm.setVisible(true);
+
+        this.dispose();
+    }//GEN-LAST:event_jmenuCerrarActionPerformed
 
     private void menuFirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuFirmarActionPerformed
         jpnMain.removeAll();
-        jpnlFirmar reg=new jpnlFirmar();
+        jpnlFirmar reg = new jpnlFirmar();
         reg.setVisible(true);
         reg.setSize(32767, 32767);
         reg.setUser(user);
@@ -175,7 +184,7 @@ public class jfrmUsPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jmenuCerrar;
     private javax.swing.JPanel jpnMain;
     private javax.swing.JMenuItem menuFirmar;
     // End of variables declaration//GEN-END:variables
