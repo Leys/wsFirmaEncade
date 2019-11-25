@@ -55,7 +55,6 @@ public class jpnlFirmar extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
         jbtnFirmar = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jlblArchivo = new javax.swing.JLabel();
@@ -64,11 +63,15 @@ public class jpnlFirmar extends javax.swing.JPanel {
         jtxtAInformacion = new javax.swing.JTextArea();
         jlblEstado = new javax.swing.JLabel();
         jbtnDescargar = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        lblClose = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        lblMin = new javax.swing.JLabel();
 
         setPreferredSize(new java.awt.Dimension(450, 300));
 
-        jLabel1.setText("Firma de documentos");
-
+        jbtnFirmar.setBackground(new java.awt.Color(127, 140, 141));
+        jbtnFirmar.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
         jbtnFirmar.setText("Firmar");
         jbtnFirmar.setEnabled(false);
         jbtnFirmar.addActionListener(new java.awt.event.ActionListener() {
@@ -77,6 +80,8 @@ public class jpnlFirmar extends javax.swing.JPanel {
             }
         });
 
+        jButton1.setBackground(new java.awt.Color(127, 140, 141));
+        jButton1.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
         jButton1.setText("Subir");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -94,12 +99,66 @@ public class jpnlFirmar extends javax.swing.JPanel {
 
         jlblEstado.setText("jLabel2");
 
+        jbtnDescargar.setBackground(new java.awt.Color(127, 140, 141));
+        jbtnDescargar.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
         jbtnDescargar.setText("Descargar Firma");
         jbtnDescargar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtnDescargarActionPerformed(evt);
             }
         });
+
+        jPanel1.setBackground(new java.awt.Color(20, 60, 80));
+
+        lblClose.setFont(new java.awt.Font("Franklin Gothic Demi", 0, 18)); // NOI18N
+        lblClose.setForeground(new java.awt.Color(255, 255, 255));
+        lblClose.setText("X");
+        lblClose.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblClose.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblCloseMouseClicked(evt);
+            }
+        });
+
+        jLabel4.setFont(new java.awt.Font("Franklin Gothic Demi", 0, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("Firma de documentos");
+
+        lblMin.setFont(new java.awt.Font("Franklin Gothic Demi", 0, 18)); // NOI18N
+        lblMin.setForeground(new java.awt.Color(255, 255, 255));
+        lblMin.setText("-");
+        lblMin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblMin.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblMinMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblMin)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblClose)
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lblClose, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblMin, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -112,25 +171,22 @@ public class jpnlFirmar extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel1)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jlblArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jButton1)))
+                                .addComponent(jlblArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton1)
                                 .addGap(18, 18, 18)
                                 .addComponent(jbtnFirmar))
                             .addComponent(jlblEstado)
                             .addComponent(jbtnDescargar))
-                        .addGap(0, 131, Short.MAX_VALUE)))
+                        .addGap(0, 119, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addGap(16, 16, 16)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbtnFirmar)
                     .addComponent(jButton1)
@@ -140,7 +196,7 @@ public class jpnlFirmar extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jbtnDescargar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -275,10 +331,20 @@ public class jpnlFirmar extends javax.swing.JPanel {
 
     }//GEN-LAST:event_jbtnDescargarActionPerformed
 
+    private void lblCloseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCloseMouseClicked
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_lblCloseMouseClicked
+
+    private void lblMinMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMinMouseClicked
+        //this.setState(jplAcceso.ICONIFIED);
+    }//GEN-LAST:event_lblMinMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton jbtnDescargar;
@@ -286,5 +352,7 @@ public class jpnlFirmar extends javax.swing.JPanel {
     private javax.swing.JLabel jlblArchivo;
     private javax.swing.JLabel jlblEstado;
     private javax.swing.JTextArea jtxtAInformacion;
+    private javax.swing.JLabel lblClose;
+    private javax.swing.JLabel lblMin;
     // End of variables declaration//GEN-END:variables
 }
